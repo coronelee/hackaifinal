@@ -8,7 +8,7 @@ function App() {
   return (
     <div className={styles.app}> 
       <Header />
-      <MainCanvas />
+      <MainCanvas/>
       <VoiceRecord />
     </div>
   );
