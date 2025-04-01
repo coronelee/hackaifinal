@@ -95,7 +95,7 @@ export default function VoiceRecord() {
         <div className='wrapper'  id='wrapper'>
             <div className='textIRLWrapper' id='textIRLWrapper'>
                 <div className='bar'><CiEraser onClick={() => setText('')}/><IoCloseOutline onClick={() => removeKeyFrames()} id='close'/></div>
-                <span className='textIRL' id='textIRL'>{text}</span>
+                <span className='textIRL' id='textIRL' contenteditable="true">{text}</span>
                 {/* <div className='line'></div> */}
             </div>
             <PiMicrophoneThin id='svg' onClick={() => addKeyFrames()}/>
