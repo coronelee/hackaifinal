@@ -7,7 +7,7 @@ import MainCanvas from './components/MainCanvas.jsx';
 function App() {
   return (
     <div className={styles.app}> 
-      <Header />
+      {/* <Header /> */}
       <MainCanvas/>
       <VoiceRecord />
     </div>

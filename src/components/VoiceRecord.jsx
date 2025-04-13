@@ -91,6 +91,46 @@ export default function VoiceRecord() {
         wrapper.style.boxShadow = '0px 0px 10px 10px rgba(255, 0, 0, 0.15)';
     }
 
+
+    const [isRecording, setIsRecording] = useState(false);
+    const [audioUrl, setAudioUrl] = useState(null);
+    const mediaRecorderRef = useRef(null);
+    const audioChunksRef = useRef([]);
+   
+    const startRecording = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const mediaRecorder = new MediaRecorder(stream);
+  
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) {
+            audioChunksRef.current.push(e.data);
+          }
+        };
+  
+        mediaRecorder.onstop = () => {
+          const audioBlob = new Blob(audioChunksRef.current, { type: "audio/wav" });
+          const url = URL.createObjectURL(audioBlob);
+          setAudioUrl(url);
+          audioChunksRef.current = [];
+        };
+  
+        mediaRecorderRef.current = mediaRecorder;
+        mediaRecorder.start();
+        setIsRecording(true);
+      } catch (err) {
+        console.error("Ошибка записи:", err);
+      }
+    };
+  
+    const stopRecording = () => {
+      if (mediaRecorderRef.current) {
+        mediaRecorderRef.current.stop();
+        mediaRecorderRef.current.stream.getTracks().forEach((track) => track.stop());
+        setIsRecording(false);
+      }
+    };
+
     return (
         <div className='wrapper'  id='wrapper'>
             <div className='textIRLWrapper' id='textIRLWrapper'>
