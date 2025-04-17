@@ -336,7 +336,7 @@ export default function MainCanvas() {
           }}>
             Создать соединение
           </div>
-          <div className={styles.contextMenuDivider}></div>
+          {/* <div className={styles.contextMenuDivider}></div>
           <div className={styles.contextMenuSubHeader}>Изменить тип</div>
           <div className={styles.contextMenuItem} onClick={() => changeElementType('bpmn:Task')}>
             Задача
@@ -349,21 +349,9 @@ export default function MainCanvas() {
           </div>
           <div className={styles.contextMenuItem} onClick={() => changeElementType('bpmn:EndEvent')}>
             Конец
-          </div>
+          </div> */}
         </div>
       )}
-      
-      {/* {selectedElement && (
-        <div className={styles.renameModal}>
-          <input
-            type="text"
-            value={elementName}
-            onChange={(e) => setElementName(e.target.value)}
-            placeholder="Введите название элемента"
-          />
-          <button onClick={updateElementName}>Сохранить</button>
-        </div>
-      )} */}
     </div>
   );
 };
